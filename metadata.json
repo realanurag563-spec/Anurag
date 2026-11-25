@@ -1,0 +1,6 @@
+{
+  "name": "GuruQuest",
+  "description": "Gamified AI teacher companion for Classes 1-12 and Government Job Exams with Google-grounded research, interactive 3D concept views, Duolingo-style lessons, practice tests, study schedules, live expert tutor doubts, and offline study packs.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

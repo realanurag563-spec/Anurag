@@ -1,0 +1,210 @@
+{
+  "entities": {
+    "UserProgressProfile": {
+      "title": "UserProgressProfile",
+      "description": "Learner profile, XP, gems, streak, hearts, selected curriculum track, and milestone badges.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Firebase Auth UID of the learner." },
+        "displayName": { "type": "string", "description": "Learner display name." },
+        "selectedTrackId": { "type": "string", "description": "Selected class (1-12) or government exam track ID." },
+        "selectedSubject": { "type": "string", "description": "Active subject filter." },
+        "totalXp": { "type": "integer", "description": "Cumulative XP points earned." },
+        "gems": { "type": "integer", "description": "Reward gems earned from milestones and quizzes." },
+        "streakDays": { "type": "integer", "description": "Consecutive active learning days." },
+        "hearts": { "type": "integer", "description": "Available hearts for playable lessons (0-5)." },
+        "completedLessonsCount": { "type": "integer", "description": "Number of completed lessons." },
+        "testsCompletedCount": { "type": "integer", "description": "Number of completed practice tests." },
+        "unlockedMilestones": { "type": "array", "description": "List of unlocked milestone IDs." },
+        "dailyGoalMinutes": { "type": "integer", "description": "Daily target study time in minutes." },
+        "targetExamDate": { "type": "string", "description": "Optional target exam or goal date string." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Server timestamp on creation." },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Server timestamp on last update." }
+      },
+      "required": [
+        "userId",
+        "displayName",
+        "selectedTrackId",
+        "selectedSubject",
+        "totalXp",
+        "gems",
+        "streakDays",
+        "hearts",
+        "completedLessonsCount",
+        "testsCompletedCount",
+        "unlockedMilestones",
+        "dailyGoalMinutes",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "LessonProgressDoc": {
+      "title": "LessonProgressDoc",
+      "description": "Completion state, stars, and accuracy for an individual curriculum or AI lesson.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "lessonId": { "type": "string" },
+        "trackId": { "type": "string" },
+        "subject": { "type": "string" },
+        "title": { "type": "string" },
+        "xpEarned": { "type": "integer" },
+        "stars": { "type": "integer" },
+        "bestAccuracyPercent": { "type": "integer" },
+        "completed": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "userId",
+        "lessonId",
+        "trackId",
+        "subject",
+        "title",
+        "xpEarned",
+        "stars",
+        "bestAccuracyPercent",
+        "completed",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "StudyScheduleItemDoc": {
+      "title": "StudyScheduleItemDoc",
+      "description": "Personalized study schedule task item generated or edited for the learner.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "trackId": { "type": "string" },
+        "subject": { "type": "string" },
+        "topicTitle": { "type": "string" },
+        "dayLabel": { "type": "string" },
+        "durationMinutes": { "type": "integer" },
+        "activityType": { "type": "string", "enum": ["LESSON", "QUIZ", "LAB_3D", "MOCK_TEST", "REVISION"] },
+        "completed": { "type": "boolean" },
+        "sortOrder": { "type": "integer" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "userId",
+        "trackId",
+        "subject",
+        "topicTitle",
+        "dayLabel",
+        "durationMinutes",
+        "activityType",
+        "completed",
+        "sortOrder",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "PracticeTestAttemptDoc": {
+      "title": "PracticeTestAttemptDoc",
+      "description": "Recorded practice test score and XP summary.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "trackId": { "type": "string" },
+        "subject": { "type": "string" },
+        "testTitle": { "type": "string" },
+        "score": { "type": "integer" },
+        "totalQuestions": { "type": "integer" },
+        "xpAwarded": { "type": "integer" },
+        "durationSeconds": { "type": "integer" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "userId",
+        "trackId",
+        "subject",
+        "testTitle",
+        "score",
+        "totalQuestions",
+        "xpAwarded",
+        "durationSeconds",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "DoubtSessionDoc": {
+      "title": "DoubtSessionDoc",
+      "description": "Live doubt resolution room connecting a student with a subject expert tutor.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "tutorId": { "type": "string" },
+        "tutorName": { "type": "string" },
+        "tutorSpecialty": { "type": "string" },
+        "subject": { "type": "string" },
+        "topic": { "type": "string" },
+        "status": { "type": "string", "enum": ["ACTIVE", "QUEUED_HUMAN", "RESOLVED"] },
+        "lastMessage": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "userId",
+        "tutorId",
+        "tutorName",
+        "tutorSpecialty",
+        "subject",
+        "topic",
+        "status",
+        "lastMessage",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "DoubtMessageDoc": {
+      "title": "DoubtMessageDoc",
+      "description": "Individual real-time message in a tutor doubt session.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "senderRole": { "type": "string", "enum": ["STUDENT", "TUTOR", "AI_BRIDGE"] },
+        "senderName": { "type": "string" },
+        "text": { "type": "string" },
+        "citations": { "type": "array" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "userId",
+        "senderRole",
+        "senderName",
+        "text",
+        "createdAt",
+        "updatedAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProgressProfile" },
+      "description": "User-owned learner profile and gamification state."
+    },
+    "/users/{userId}/lesson_progress/{lessonId}": {
+      "schema": { "$ref": "#/entities/LessonProgressDoc" },
+      "description": "User-owned lesson mastery records."
+    },
+    "/users/{userId}/study_schedule/{scheduleId}": {
+      "schema": { "$ref": "#/entities/StudyScheduleItemDoc" },
+      "description": "User-owned personalized study schedule items."
+    },
+    "/users/{userId}/test_attempts/{attemptId}": {
+      "schema": { "$ref": "#/entities/PracticeTestAttemptDoc" },
+      "description": "User-owned practice test attempt records."
+    },
+    "/users/{userId}/doubt_sessions/{sessionId}": {
+      "schema": { "$ref": "#/entities/DoubtSessionDoc" },
+      "description": "User-owned live expert tutor doubt sessions."
+    },
+    "/users/{userId}/doubt_sessions/{sessionId}/messages/{messageId}": {
+      "schema": { "$ref": "#/entities/DoubtMessageDoc" },
+      "description": "Real-time messages inside a user-owned doubt session."
+    }
+  }
+}
